@@ -53,7 +53,7 @@ export const POST = async (req: NextRequest) => {
 
   const pinecone = await getPineconeClient()
   const pineconeIndex = pinecone.Index('pdfreader');
-  console.log('ok1');
+  // console.log('ok1');
   const vectorStore = await PineconeStore.fromExistingIndex(
    embeddings,
    {
@@ -61,10 +61,10 @@ export const POST = async (req: NextRequest) => {
     filter: { fileId },
    },
   );
-  console.log('ok2');
+  //console.log('ok2');
 
   const results = await vectorStore.similaritySearch(message, 4);
-  console.log('ok3');
+  //console.log('ok3');
 
   const prevMessages = await db.message.findMany({
    where: {
@@ -75,7 +75,7 @@ export const POST = async (req: NextRequest) => {
    },
    take: 6,
   });
-  console.log('ok4');
+  //console.log('ok4');
 
   const formattedPrevMessages = prevMessages.map(
    (msg: { isUserMessage: any; text: any }) => ({
@@ -85,7 +85,7 @@ export const POST = async (req: NextRequest) => {
     content: msg.text,
    }),
   );
-  console.log('ok5');
+  //console.log('ok5');
 
   const response = await openai.chat.completions.create({
    model: 'gpt-3.5-turbo',

@@ -111,7 +111,7 @@ const onUploadComplete = async ({
   await PineconeStore.fromDocuments(pageLevelDocs, embeddings, {
    pineconeIndex
   });
-  console.log('ok don2');
+  // console.log('ok don2');
   await db.file.update({
    data: {
     uploadStatus: 'SUCCESS',
