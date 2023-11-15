@@ -45,7 +45,7 @@ export function constructMetadata({
       creator: "@sonofthesoil028"
     },
     icons,
-    // metadataBase: new URL('https://PDFReader-jet.vercel.app'),
+     metadataBase: new URL('https://pdfreader2.vercel.app'),
     themeColor: '#FFF',
     ...(noIndex && {
       robots: {
