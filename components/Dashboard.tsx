@@ -83,16 +83,14 @@ const Dashboard = ({subscriptionPlan}: PageProps) => {
                 <div className='px-6 mt-4 grid grid-cols-3 place-items-center py-2 gap-6 text-xs text-zinc-500'>
                   <div className='flex items-center gap-2'>
                     <Plus className='h-4 w-4' />
-                    {format(
-                      new Date(file.createdAt),
-                      'MMM yyyy'
-                    )}
+                  
+                    {format(new Date(file.createdAt), 'MMM dd, yyyy, hh:mm:ss a')}
                   </div>
 
-                  <div className='flex items-center gap-2'>
+                  {/* <div className='flex items-center gap-2'>
                     <MessageSquare className='h-4 w-4' />
                     mocked
-                  </div>
+                  </div> */}
 
                   <Button
                     onClick={() =>
@@ -112,7 +110,10 @@ const Dashboard = ({subscriptionPlan}: PageProps) => {
             ))}
         </ul>
       ) : isLoading ? (
-        <Skeleton height={100} className='my-2' count={3} />
+        <div className='mt-8 grid grid-cols-1 gap-6 divide-y divide-zinc-200 md:grid-cols-2 lg:grid-cols-3'>
+
+          <Skeleton height={100} className='my-2 col-span-1 divide-y divide-gray-200 rounded-lg' count={6} />
+        </div>
       ) : (
         <div className='mt-16 flex flex-col items-center gap-2'>
           <Ghost className='h-8 w-8 text-zinc-800' />

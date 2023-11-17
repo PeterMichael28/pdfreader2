@@ -2,7 +2,7 @@ import { cn } from '@/lib/utils'
 import { ExtendedMessage } from '@/types/message'
 import { Icons } from '../Icons'
 import ReactMarkdown from 'react-markdown'
-import { format } from 'date-fns'
+import { formatDistanceToNow } from 'date-fns'
 import { forwardRef } from 'react'
 
 interface MessageProps {
@@ -38,7 +38,7 @@ const Message = forwardRef<HTMLDivElement, MessageProps>(
 
         <div
           className={cn(
-            'flex flex-col space-y-2 text-base max-w-md mx-2',
+            'flex flex-col space-y-2 text-sm max-w-md mx-2',
             {
               'order-1 items-end': message.isUserMessage,
               'order-2 items-start': !message.isUserMessage,
@@ -63,26 +63,32 @@ const Message = forwardRef<HTMLDivElement, MessageProps>(
             {typeof message.text === 'string' ? (
               <ReactMarkdown
                 className={cn('prose', {
-                  'text-zinc-50': message.isUserMessage,
+                  'text-zinc-50 text-sm': message.isUserMessage,
                 })}>
                 {message.text}
               </ReactMarkdown>
             ) : (
-              message.text
+                <span className='text-sm'>
+                  
+                  {message.text}
+              </span>
             )}
             {message.id !== 'loading-message' ? (
               <div
                 className={cn(
-                  'text-xs select-none mt-2 w-full text-right',
+                  'text-[.75rem] select-none mt-2 w-full text-right',
                   {
                     'text-zinc-500': !message.isUserMessage,
                     'text-blue-300': message.isUserMessage,
                   }
                 )}>
-                {format(
-                  new Date(message.createdAt),
-                  'HH:mm'
-                )}
+               
+                {
+                  formatDistanceToNow(
+                    new Date(message.createdAt),
+                    {includeSeconds: true}
+                  )
+                }
               </div>
             ) : null}
           </div>
