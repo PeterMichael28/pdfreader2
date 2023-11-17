@@ -80,8 +80,8 @@ const Dashboard = ({subscriptionPlan}: PageProps) => {
                   </div>
                 </Link>
 
-                <div className='px-6 mt-4 grid grid-cols-3 place-items-center py-2 gap-6 text-xs text-zinc-500'>
-                  <div className='flex items-center gap-2'>
+                <div className='px-6 mt-4 grid grid-cols-2 place-items-center place-content-between py-2 gap-6 text-xs text-zinc-500'>
+                  <div className='flex items-center gap-2 '>
                     <Plus className='h-4 w-4' />
                   
                     {format(new Date(file.createdAt), 'MMM dd, yyyy, hh:mm:ss a')}
